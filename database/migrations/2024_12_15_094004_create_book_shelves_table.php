@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('impression');//感想
             $table->string('memo');//メモ
             $table->string('image_path')->nullable();  
-            $table->string('user_id');
-            $table->string('genres');//ジャンルテーブル？
+            $table->bigInteger('user_id');
+            $table->bigInteger('genre_id')->nullable();//ジャンルテーブル
             $table->timestamps();
         });
     }

@@ -33,10 +33,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 
-Route::controller(TopController::class)->group(function() {
-    Route::get('top/create', 'add');
+Route::controller(App\Http\Controllers\TopController::class)->group(function() {
+    Route::get('/', 'add');
 });
 
-Route::controller(BookController::class)->group(function() {
-    Route::get('book/create', 'add');
+Route::controller(App\Http\Controllers\BookController::class)->group(function() {
+    Route::get('booktop', 'add');
 });
+//↑グループ化しようとしたらエラー出た

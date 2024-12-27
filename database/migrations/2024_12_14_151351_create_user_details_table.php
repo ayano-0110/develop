@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('furigana');  // ふりがなを保存するカラム
             $table->string('telephone_number');
             $table->string('nickname');
-            $table->string('user_id');
+            $table->bigInteger('user_id');
             $table->timestamps();
         });
     }

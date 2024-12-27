@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('genres', function (Blueprint $table) {
             $table->id();
-            $table->string('book_genre')->nullable();//ジャンル
-            $table->string('user_id');
+            $table->string('book_genre');//ジャンル
+            $table->bigInteger('user_id');
             $table->timestamps();
         });
     }

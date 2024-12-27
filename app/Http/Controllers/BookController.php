@@ -8,7 +8,7 @@ class BookController extends Controller
 {
     public function add()
     {
-        return view('book.create');
+        return view('book.booktop');
     }
 }
 

@@ -8,6 +8,6 @@ class TopController extends Controller
 {
     public function add()
     {
-        return view('top.create');
+        return view('top.top');
     }
 }
