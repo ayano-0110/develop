@@ -38,6 +38,6 @@ Route::controller(App\Http\Controllers\TopController::class)->group(function() {
 });
 
 Route::controller(App\Http\Controllers\BookController::class)->group(function() {
-    Route::get('booktop', 'add');
+    Route::get('booktop', 'add')->middleware('auth');
 });
 //↑グループ化しようとしたらエラー出た
