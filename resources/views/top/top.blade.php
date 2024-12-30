@@ -8,6 +8,6 @@
         <title>Top画面</title>
     </head>
     <body>
-        <h1>TOP</h1>
+        <h1>Book Record</h1>
     </body>
 </html>

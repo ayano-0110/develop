@@ -29,7 +29,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Route::controller(TopController::class)->prefix('top')->group(function() {
    // Route::get('top/create', 'add')->middleware('auth');
 //});
-//->prefix,->groupの意味がわからない
+
 
 
 
@@ -38,6 +38,7 @@ Route::controller(App\Http\Controllers\TopController::class)->group(function() {
 });
 
 Route::controller(App\Http\Controllers\BookController::class)->group(function() {
-    Route::get('booktop', 'add')->middleware('auth');
-});
+    Route::get('booktop', 'add')->name('booktop.add')->middleware('auth');
+    Route::post('booktop')->name('booktop');
+});    //getとpost合ってるか？（）の中には何を入れればいいのか？getも「name」はいるのか？
 //↑グループ化しようとしたらエラー出た
