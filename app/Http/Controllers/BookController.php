@@ -13,21 +13,27 @@ class BookController extends Controller
     }
 
 //↓createじゃない？
-    public function create(Request $request)//ページ内を編集するからcreate
+public function create()
+{
+    return view('bookregister');
+}
+    public function store(Request $request)
     {
-        $this->validate($request, Book::$rules);//バリデーションを行う
-        $book = new Book;//合ってる？
-        $form = $request->all();
+        // バリデーション
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'description' => 'nullable|string',
+        ]);
 
-        // データベースに保存する
-        $book->fill($form);//ここも合ってる？
-        $book->save();
+
+        // 本を保存する処理
+        // 例えば、Bookモデルを使ってDBに保存する場合：
+        // Book::create($request->all());
+
+        
 
         // booktopにリダイレクトする
-        return redirect('booktop');//(book.booktop)になるのか？
+        return redirect('bookshelf');//(book.booktop)になるのか？
     }
 }
-
-
-
-//('book.create')であっているのか、そもそもコントローラーの中に何を書けばいいのかわからない

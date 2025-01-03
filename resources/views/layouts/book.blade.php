@@ -24,61 +24,96 @@
         {{-- Laravel標準で用意されているCSSを読み込みます --}}
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         {{-- この章の後半で作成するCSSを読み込みます --}}
-        <link href="{{ asset('css/book.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
+        <style>
+            header {
+              background-color: #4CAF50; /* 背景色（緑） */
+              color: white;              /* 文字色 */
+              padding: 10px;             /* 内部余白 */
+              text-align: left;        /* 左揃え */
+              font-size: 10px; /* ピクセル単位で指定 */
+            
+            }
+           footer {
+              background-color: #333; /* 背景色 */
+              color: white;            /* 文字色 */
+              text-align: center;      /* 中央揃え */
+              padding: 20px;           /* 内部余白 */
+              position: fixed;         /* 固定 */
+              bottom: 0;               /* 下端に配置 */
+              width: 100%;             /* 幅を100%に設定 */
+              font-size: 10px; /* ピクセル単位で指定 */
+            }
+        </style>
     </head>
     <body>
-        <div id="app">
-            {{-- 画面上部に表示するナビゲーションバーです。 --}}
-            <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+      <header>
+        <h1>Book Record</h1>
+      </header>
+        
+      <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav ms-auto">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
 
-                        </ul>
+                    </ul>
 
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav">
-                        {{-- 以下を追記 --}}
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                            {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
-                            @guest
-                                <li><a class="nav-link" href="{{ route('login') }}">{{ __('messages.login') }}</a></li>
-                            {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
-                            @else
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ Auth::user()->name }} <span class="caret"></span>
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
+                                </li>
+                            @endif
+
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('新規登録') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
                                     </a>
 
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                            {{ __('messages.logout') }}
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                            @endguest
-                            {{-- 以上までを追記 --}}
-                        </ul>
-                    </div>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
                 </div>
-            </nav>
-            {{-- ここまでナビゲーションバー --}}
+            </div>
+        </nav>
 
-            <main class="py-4">
-                {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
-                @yield('content')
-            </main>
-        </div>
+        <main class="py-4">
+            @yield('content')
+        </main>
+
+    </div>
+    <footer>
+      <p>© 2025 Book Record.</p>
+    </footer>
     </body>
 </html>

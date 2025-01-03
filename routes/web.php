@@ -40,5 +40,9 @@ Route::controller(App\Http\Controllers\TopController::class)->group(function() {
 Route::controller(App\Http\Controllers\BookController::class)->group(function() {
     Route::get('booktop', 'add')->name('booktop.add')->middleware('auth');
     Route::post('booktop')->name('booktop');
+    Route::get('bookshelf')->name('bookshelf');
+    Route::post('bookshelf')->name('bookshelf');
+    Route::get('bookregister', 'create')->name('bookregister.create');
+    Route::post('bookregister', 'keep')->name('bookregister.keep');
 });    //getとpost合ってるか？（）の中には何を入れればいいのか？getも「name」はいるのか？
 //↑グループ化しようとしたらエラー出た

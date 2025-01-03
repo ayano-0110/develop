@@ -54,6 +54,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('messages.login') }}
                                     </button>
+                                    
                                 </div>
                             </div>
                         </form>

@@ -7,12 +7,14 @@
 
 {{-- toppage.blade.phpの@yield('content')に以下のタグを埋め込む --}}
 @section('content')
+
 <div>
 <!-- フォームで送信される -->
   <form action="login.blade.php" method="POST">
   <button type="submit">ログイン</button>
   </form>
 </div>
+
 
 <div>
 <h7>アカウントをお持ちでない方</h7>
