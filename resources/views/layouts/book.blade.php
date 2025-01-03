@@ -28,8 +28,8 @@
     
         <style>
             header {
-              background-color: #4CAF50; /* 背景色（緑） */
-              color: white;              /* 文字色 */
+              background-color: #AFEEEE; /* 背景色（緑） */
+              color: gray;              /* 文字色 */
               padding: 10px;             /* 内部余白 */
               text-align: left;        /* 左揃え */
               font-size: 10px; /* ピクセル単位で指定 */
