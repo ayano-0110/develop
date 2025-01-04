@@ -10,16 +10,18 @@
 
 <div>
 <!-- フォームで送信される -->
-  <form action="login.blade.php" method="POST">
+  <form action="{{ route('login') }}" method="GET">
   <button type="submit">ログイン</button>
   </form>
 </div>
 
-
 <div>
 <h7>アカウントをお持ちでない方</h7>
   <!-- フォームで送信される -->
-  <form action="register.blade.php" method="POST">
+  <form action="{{ route('register') }}" method="GET">
   <button type="submit">新規登録</button>
   </form>
 </div>
+@endsection
+
+//なぜコメントにならないのか、なぜGETなのか

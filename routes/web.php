@@ -24,12 +24,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 
-//memo.->middleware('auth');付け足すことでログインしてない状態で管理画面にアクセスした時,
-//ログイン画面にリダイレクトするように設定できる！忘れないようにとりあえず追加する部分まとめて下記に記載しておく。
+//memo.->middleware('auth');付け足すことでログインしてない状態で管理画面にアクセスした時,ログイン画面にリダイレクトするように設定できる！
 //Route::controller(TopController::class)->prefix('top')->group(function() {
-   // Route::get('top/create', 'add')->middleware('auth');
+// Route::get('top/create', 'add')->middleware('auth');
 //});
-
 
 
 
@@ -40,9 +38,11 @@ Route::controller(App\Http\Controllers\TopController::class)->group(function() {
 Route::controller(App\Http\Controllers\BookController::class)->group(function() {
     Route::get('booktop', 'add')->name('booktop.add')->middleware('auth');
     Route::post('booktop')->name('booktop');
-    Route::get('bookshelf')->name('bookshelf');
+    Route::get('bookshelf', 'select')->name('bookshelf.select');
     Route::post('bookshelf')->name('bookshelf');
     Route::get('bookregister', 'create')->name('bookregister.create');
-    Route::post('bookregister', 'keep')->name('bookregister.keep');
-});    //getとpost合ってるか？（）の中には何を入れればいいのか？getも「name」はいるのか？
-//↑グループ化しようとしたらエラー出た
+    Route::post('bookregister')->name('bookregister');
+    Route::get('booksearch', 'search')->name('booksearch.search');
+    Route::post('booksearch')->name('booksearch');
+});    //getとpost合ってるか？ちゃんと理解できてない（）の中には何を入れればいいのか？getも「name」はいるのか？
+       //↑グループ化しようとしたらエラー出た

@@ -24,10 +24,12 @@
             border-radius: 10px; /* 角を丸く */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加 */
             text-align: center;
+            
+            
         }
 
         .bookshelf-box h3 {
-            font-size: 1.5rem;
+            font-size: 3rem;
             margin-bottom: 15px;
         }
 

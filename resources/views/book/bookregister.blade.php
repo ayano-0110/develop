@@ -2,15 +2,49 @@
 @extends('layouts.book')
 
 
-{{-- book.blade.phpの@yield('title')に'My本棚'を埋め込む --}}
+{{-- book.blade.phpの@yield('title')に'本を登録する'を埋め込む --}}
 @section('title', '本を登録する')
 
 {{-- book.blade.phpの@yield('content')に以下のタグを埋め込む --}}
 @section('content')
 <div class="container">
-        <h1>本を登録する</h1>
+        <h3>本を登録する</h3>
+        <!-- 本の情報を登録するボックス -->
+        <div class="bookshelf-box">
+            <a href="{{ route('booksearch') }}" class="btn">検索して登録</a>
+        </div>
+    </div>
 
-        <form method="POST" action="{{ route('bookregister.create') }}">
+    <style>
+        /* 本の情報を登録するボックスのデザイン */
+        .bookshelf-box {
+            width: 100px; /* 幅を設定 */
+            height: 150px; /* 高さ*/
+            padding: 3px; /* 内側の余白 */
+            background-color: #F8F8FF; /* 背景色 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加 */
+            text-align: center;
+            display: flex; /* フレックスボックスを使用 */
+            flex-direction: column; /* 子要素を縦に並べる */
+            justify-content: center; /* 縦方向の中央揃え */
+            align-items: center; /* 横方向の中央揃え */
+            
+        }
+
+        .bookshelf-box h3 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .bookshelf-box .btn {
+            margin-top: 15px;
+        }
+
+    </style>
+
+
+
+        <form method="POST" action="{{ route('bookregister') }}">
             @csrf
 
             <div class="form-group">
@@ -24,8 +58,13 @@
             </div>
 
             <div class="form-group">
-                <label for="description">説明</label>
-                <textarea id="description" name="description" class="form-control"></textarea>
+                <label for="description">あらすじ</label>
+                <textarea id="description" name="description" rows="4" cols="50" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="description">感想・メモ</label>
+                <textarea id="description" name="description" rows="10" cols="50" class="form-control"></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">登録</button>

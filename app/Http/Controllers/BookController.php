@@ -12,14 +12,25 @@ class BookController extends Controller
         return view('book.booktop');
     }
 
-//↓createじゃない？
-public function create()
-{
-    return view('bookregister');
-}
+    public function select()
+    {
+        return view('book.bookshelf');
+    }
+
+    public function create()
+    {
+        return view('book.bookregister');
+    }
+
+    public function search()
+    {
+        return view('book.booksearch');
+    }
+
+
     public function store(Request $request)
     {
-        // バリデーション
+        // バリデーション?
         $request->validate([
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
@@ -34,6 +45,6 @@ public function create()
         
 
         // booktopにリダイレクトする
-        return redirect('bookshelf');//(book.booktop)になるのか？
+        //return redirect('book.bookshelf');//合ってる？
     }
 }
