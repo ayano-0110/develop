@@ -36,15 +36,16 @@
 
         <div class="form-group">
             <label for="description">あらすじ</label>
-            <textarea id="description" name="description" rows="10" cols="50" class="form-control"></textarea>
+            <textarea id="description" name="description" rows="7" cols="50" class="form-control"></textarea>
         </div>
 
         <div class="form-group">
             <label for="memo">感想・メモ</label>
-            <textarea id="memo" name="memo" rows="20" cols="50" class="form-control"></textarea>
+            <textarea id="memo" name="memo" rows="10" cols="50" class="form-control"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">登録</button>
+        <button type="submit" class="btn btn-primary mt-2 mb-5">登録</button>
+
     </form>
 </div>
 

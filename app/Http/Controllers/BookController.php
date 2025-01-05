@@ -27,15 +27,55 @@ class BookController extends Controller
         return view('book.booksearch');
     }
 
-
-    public function store(Request $request)
+///
+    // 登録フォームを表示する
+    public function showForm()
     {
-        // バリデーション?
+        return view('book.booksearch');
+    }
+
+    // 本の情報を保存する
+    public function register(Request $request)
+    {
         $request->validate([
-            'title' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
+            'title' => 'required|string',
+            'author' => 'required|string',
             'description' => 'nullable|string',
+            'memo' => 'nullable|string',
         ]);
+
+        // データを保存
+        $book = Book::create([
+            'title' => $request->input('title'),
+            'author' => $request->input('author'),
+            'summary' => $request->input('summary'),
+            'impression' => $request->input('impression'),
+            'memo' => $request->input('memo'),
+            'image_path' => $request->input('image_path'),
+            'genre_id' => $request->input('genre_id'),
+        ]);
+
+        // 登録後に詳細ページへリダイレクト
+        return redirect()->route('book.bookregister', ['book' => $book->id]);
+    }
+
+    // 登録した本の情報を表示
+    public function show($id)
+    {
+        $book = Book::findOrFail($id);
+        return view('book.show', compact('book'));
+    }
+}
+///
+
+    // public function store(Request $request)
+    // {
+    //     // バリデーション?
+    //     $request->validate([
+    //         'title' => 'required|string|max:255',
+    //         'author' => 'required|string|max:255',
+    //         'description' => 'nullable|string',
+    //     ]);
 
 
         // 本を保存する処理
@@ -46,5 +86,5 @@ class BookController extends Controller
 
         // booktopにリダイレクトする
         //return redirect('book.bookshelf');//合ってる？
-    }
-}
+//     }
+// }

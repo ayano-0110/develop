@@ -59,12 +59,12 @@
 
             <div class="form-group">
                 <label for="description">あらすじ</label>
-                <textarea id="description" name="description" rows="4" cols="50" class="form-control"></textarea>
+                <textarea id="description" name="description" rows="3" cols="50" class="form-control"></textarea>
             </div>
 
             <div class="form-group">
                 <label for="description">感想・メモ</label>
-                <textarea id="description" name="description" rows="10" cols="50" class="form-control"></textarea>
+                <textarea id="description" name="description" rows="3" cols="50" class="form-control"></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">登録</button>
