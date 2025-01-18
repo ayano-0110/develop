@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
-use App\Models\Book;
+use App\Models\BookShelf;
 
 class BookController extends Controller
 {
@@ -27,6 +27,11 @@ class BookController extends Controller
         return view('book.booksearch');
     }
 
+    public function sort()
+    {
+        return view('book.bookgenre');
+    }
+
 ///
     // 登録フォームを表示する
     public function showForm()
@@ -40,12 +45,15 @@ class BookController extends Controller
         $request->validate([
             'title' => 'required|string',
             'author' => 'required|string',
-            'description' => 'nullable|string',
+            'summary' => 'nullable|string',
+            'impression' => 'nullable|string',
             'memo' => 'nullable|string',
+            'image_path' => 'nullable|string',
+            'enre_id' => 'required|string',
         ]);
 
         // データを保存
-        $book = Book::create([
+        $book = BookShelf::create([
             'title' => $request->input('title'),
             'author' => $request->input('author'),
             'summary' => $request->input('summary'),
@@ -62,7 +70,7 @@ class BookController extends Controller
     // 登録した本の情報を表示
     public function show($id)
     {
-        $book = Book::findOrFail($id);
+        $book = BookShelf::findOrFail($id);
         return view('book.show', compact('book'));
     }
 }

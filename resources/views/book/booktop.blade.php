@@ -7,38 +7,69 @@
 
 {{-- book.blade.phpの@yield('content')に以下のタグを埋め込む --}}
 @section('content')
+
 <div class="container">
-        <h3>マイページ</h3>
-        <!-- 本棚ボックス -->
-        <div class="bookshelf-box">
-            <a href="{{ route('bookshelf') }}" class="btn">本棚</a>
-        </div>
+  <div class="row">
+    <!-- 1つ目のボックス -->
+    <div class="col-md-6 mb-4">
+     <a href="{{ route('bookshelf') }}" class="d-block" style="text-decoration: none;">
+      <div class="box p-3 border bg-danger bg-gradient rounded d-flex justify-content-center align-items-center" style="min-height: 200px;">
+       <span class="fs-4 text-white">My本棚</span>
+      </div>
+     </a>
     </div>
+    <!-- 2つ目のボックス -->
+    <div class="col-md-6 mb-4">
+      <div class="box p-3 border bg-warning bg-gradient rounded d-flex justify-content-center align-items-center" style="min-height: 200px;">
+       <span class="fs-4 text-white">検索</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <!-- 3つ目のボックス -->
+    <div class="col-md-6">
+      <div class="box p-3 border bg-success bg-gradient rounded d-flex justify-content-center align-items-center" style="min-height: 200px;">
+       <span class="fs-4 text-white">古本を探す</span>
+      </div>
+    </div>
+    <!-- 4つ目のボックス -->
+    <div class="col-md-6">
+      <div class="box p-3 border bg-primary bg-gradient rounded d-flex justify-content-center align-items-center" style="min-height: 200px;">
+       <span class="fs-4 text-white">チャット</span>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <style>
-        /* 本棚ボックスのデザイン */
-        .bookshelf-box {
-            width: 200px; /* 幅を設定 */
-            padding: 30px; /* 内側の余白 */
-            background-color: #E6E6FA; /* 背景色 */
-            border-radius: 10px; /* 角を丸く */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加 */
-            text-align: center;
-            
-            
-        }
 
-        .bookshelf-box h3 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        .bookshelf-box .btn {
-            margin-top: 15px;
-        }
-    </style>
-
-
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>横線とテキスト</title>
+  <style>
+    /* 横線のスタイル */
+    hr {
+      border: 0;
+      border-top: 2px solid #000; /* 黒い太さ2pxの線 */
+      margin-top: 50px; /* 上下のマージンを調整 */
+    }
+    
+    /* 横線の下に配置する文字のスタイル */
+    .text-below {
+      text-align: left; /* 中央にテキストを配置 */
+      font-size: 15px; /* 文字の大きさ */
+      color: #333; /* 文字色 */
+      margin-left: 10px;
+    }
+  </style>
+</head>
+ <body>
+  <hr> <!-- 横線 -->
+   <div class="text-below">〜月間ランキング〜</div>
+ </body>
+</html>
 
 @if (count($errors) > 0)
     <ul>

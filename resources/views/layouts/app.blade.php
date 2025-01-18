@@ -18,19 +18,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style>
-            header {
-              background-color: #4CAF50; /* 背景色（緑） */
-              color: white;              /* 文字色 */
-              padding: 10px;             /* 内部余白 */
-              text-align: left;        /* 左揃え */
-              font-size: 10px; /* ピクセル単位で指定 */
-            
-            }
            footer {
               background-color: #333; /* 背景色 */
               color: white;            /* 文字色 */
               text-align: center;      /* 中央揃え */
-              padding: 20px;           /* 内部余白 */
+              padding: 10px;           /* 内部余白 */
               position: fixed;         /* 固定 */
               bottom: 0;               /* 下端に配置 */
               width: 100%;             /* 幅を100%に設定 */
@@ -39,11 +31,8 @@
         </style>
 </head>
 <body>
-    <header>
-        <h1>Book Record</h1>
-    </header>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-info bg-gradient shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}

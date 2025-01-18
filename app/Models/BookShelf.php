@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Book extends Model
+class BookShelf extends Model
 {
     use HasFactory;
 
@@ -15,7 +15,12 @@ class Book extends Model
 
     public static $rules = array(
         'title' => 'required',//ここはユーザーが登録する部分に変える
-        'body' => 'required',//
+        'author' => 'required',
+        'summary'  => 'nullable',
+        'impression'  => 'nullable',
+        'memo'  => 'nullable',
+        'image_path'  => 'nullable',
+        'genre_id'  => 'required',
     );
 }
 

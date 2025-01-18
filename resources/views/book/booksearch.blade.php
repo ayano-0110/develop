@@ -19,9 +19,7 @@
     
     <!-- 検索結果表示 -->
     <div id="searchResults" class="mt-4"></div>
-
-    <!-- 本の情報を入力するフォーム -->
-    <form method="POST" action="{{ route('bookregister') }}">
+   
         @csrf
 
         <div class="form-group">
@@ -35,8 +33,8 @@
         </div>
 
         <div class="form-group">
-            <label for="description">あらすじ</label>
-            <textarea id="description" name="description" rows="7" cols="50" class="form-control"></textarea>
+            <label for="summary">あらすじ</label>
+            <textarea id="summary" name="summary" rows="7" cols="50" class="form-control"></textarea>
         </div>
 
         <div class="form-group">
