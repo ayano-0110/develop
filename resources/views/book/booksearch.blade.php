@@ -7,6 +7,7 @@
 
 {{-- book.blade.phpの@yield('content')に以下のタグを埋め込む --}}
 @section('content')
+
 <div class="container">
     <h3>検索して登録</h3>
     

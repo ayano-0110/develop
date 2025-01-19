@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
 
 // 接続を閉じる
 $conn->close();
-?>
+?> 
 
 
 
