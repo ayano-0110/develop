@@ -34,23 +34,38 @@ class BookController extends Controller
 
 ///
     // 登録フォームを表示する
-    public function showForm()
-    {
-        return view('book.booksearch');
-    }
+    // public function showForm()
+    // {
+    //     return view('book.booksearch');
+    // }
 
     // 本の情報を保存する
     public function register(Request $request)
     {
+     
+
+        
         $request->validate([
-            'title' => 'required|string',
+            'title' => 'required|string',//必須
             'author' => 'required|string',
-            'summary' => 'nullable|string',
+            'summary' => 'nullable|string',//空欄でもOK
             'impression' => 'nullable|string',
             'memo' => 'nullable|string',
             'image_path' => 'nullable|string',
-            'enre_id' => 'required|string',
+            'genre_id' => 'nullable|string',
+            'user_id' => 'required|integer|exists:users,id|in:' . auth()->id(),
+
         ]);
+
+
+        // // フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する
+        // if (isset($form['image'])) {
+        //     $path = $request->file('image')->store('public/image');
+        //     $bookshelf->image_path = basename($path);
+        // } else {
+        //     $news->image_path = null;
+        // }
+
 
         // データを保存
         $book = BookShelf::create([
@@ -61,6 +76,7 @@ class BookController extends Controller
             'memo' => $request->input('memo'),
             'image_path' => $request->input('image_path'),
             'genre_id' => $request->input('genre_id'),
+            'user_id' => $request->input('user_id'),
         ]);
 
         // 登録後に詳細ページへリダイレクト

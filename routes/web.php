@@ -41,7 +41,7 @@ Route::controller(App\Http\Controllers\BookController::class)->group(function() 
     Route::get('bookshelf', 'select')->name('bookshelf.select');
     Route::post('bookshelf')->name('bookshelf');
     Route::get('bookregister', 'create')->name('bookregister.create');
-    Route::get('bookregister', 'showForm')->name('bookregister.showForm');
+    // Route::get('bookregister', 'showForm')->name('bookregister.showForm');
     Route::post('bookregister', 'register')->name('bookregister');
     Route::get('booksearch', 'search')->name('booksearch.search');
     Route::post('booksearch')->name('booksearch');

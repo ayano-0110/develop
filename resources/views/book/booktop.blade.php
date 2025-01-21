@@ -27,13 +27,13 @@
   </div>
   <div class="row">
     <!-- 3つ目のボックス -->
-    <div class="col-md-6">
+    <div class="col-md-6 mb-4">
       <div class="box p-3 border bg-success bg-gradient rounded d-flex justify-content-center align-items-center" style="min-height: 200px;">
        <span class="fs-4 text-white">古本を探す</span>
       </div>
     </div>
     <!-- 4つ目のボックス -->
-    <div class="col-md-6">
+    <div class="col-md-6 mb-4">
       <div class="box p-3 border bg-primary bg-gradient rounded d-flex justify-content-center align-items-center" style="min-height: 200px;">
        <span class="fs-4 text-white">チャット</span>
       </div>

@@ -166,7 +166,7 @@ return [
     */
 
     'attributes' => [
-        //後ほど追記
+        'title' => 'タイトル',
+        'author' => '著者',
     ],
-
 ];

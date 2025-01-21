@@ -7,64 +7,102 @@
 
 {{-- book.blade.phpの@yield('content')に以下のタグを埋め込む --}}
 @section('content')
-<?php
-// データベース接続
-$servername = "localhost";//?
-$username = "";
-$password = "";
-$dbname = "BookShelf";  // データベース名
-
-// 接続
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// 接続チェック
-if ($conn->connect_error) {
-    die("接続失敗: " . $conn->connect_error);
-}
-
-// データベースからデータを取得
-$sql = "SELECT id, name, email FROM users";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // 各行を表示
-    while($row = $result->fetch_assoc()) {
-        echo "名前: " . $row["name"]. " - メール: " . $row["email"]. "<br>";
-    }
-} else {
-    echo "0件の結果";
-}
-
-// 接続を閉じる
-$conn->close();
-?> 
-
-
-
-        <form method="POST" action="{{ route('bookregister') }}">
-            @csrf
-
-            <div class="form-group">
-                <label for="title">本のタイトル</label>
-                <input type="text" id="title" name="title" class="form-control" required>
-            </div>
-
-            <div class="form-group">
-                <label for="author">著者</label>
-                <input type="text" id="author" name="author" class="form-control" required>
-            </div>
-
-            <div class="form-group">
-                <label for="summary">あらすじ</label>
-                <textarea id="summary" name="summary" rows="3" cols="50" class="form-control"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="description">感想・メモ</label>
-                <textarea id="description" name="description" rows="3" cols="50" class="form-control"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">登録</button>
-        </form>
+<div class="container">
+    <h3>ISBNで検索</h3>
+    
+    <!-- ISBN入力と検索ボタン -->
+    <div class="form-group">
+        <label for="isbn">ISBN</label>
+        <input type="text" id="isbn" name="isbn" class="form-control" placeholder="ISBNを入力" required>
+        <button type="button" id="searchBtn" class="btn btn-primary mt-2">検索</button>
     </div>
+    
+    <!-- 検索結果表示 -->
+    <div id="searchResults" class="mt-4"></div>
+   
+        @csrf
+        <h4>入力して登録</h4>
+        <div class="form-group">
+            <label for="title">本のタイトル</label>
+            <input type="text" id="title" name="title" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="author">著者</label>
+            <input type="text" id="author" name="author" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="summary">あらすじ</label>
+            <textarea id="summary" name="summary" rows="7" cols="50" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="impression">感想</label>
+            <textarea id="impression" name="mimpression" rows="10" cols="50" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="memo">メモ</label>
+            <textarea id="memo" name="memo" rows="10" cols="50" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2 mb-5">登録</button>
+
+    </form>
+</div>
+
+<script>
+    // ISBN検索ボタンを押すと書籍情報をGoogle Books APIで取得
+    document.getElementById('searchBtn').addEventListener('click', function() {
+        const isbn = document.getElementById('isbn').value.trim();
+        if (isbn.length === 13) { // ISBNは13桁であることを確認
+            fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.items) {
+                        displaySearchResults(data.items);
+                    } else {
+                        alert("書籍情報が見つかりませんでした。");
+                    }
+                })
+                .catch(error => {
+                    console.error("エラー:", error);
+                    alert("エラーが発生しました。");
+                });
+        } else {
+            alert("正しいISBNを入力してください。");
+        }
+    });
+
+    // 検索結果を表示する関数
+    function displaySearchResults(items) {
+        const resultsDiv = document.getElementById('searchResults');
+        resultsDiv.innerHTML = ''; // 以前の検索結果をクリア
+
+        items.forEach(item => {
+            const book = item.volumeInfo;
+            const resultItem = document.createElement('div');
+            resultItem.classList.add('search-result-item');
+            resultItem.innerHTML = `
+                <h5>${book.title}</h5>
+                <p>著者: ${book.authors ? book.authors.join(", ") : '不明'}</p>
+                <p>${book.description ? book.description.slice(0, 100) + '...' : '説明はありません'}</p>
+                <button class="btn btn-primary select-book" data-title="${book.title}" data-author="${book.authors ? book.authors.join(", ") : ''}" data-description="${book.description || ''}">選択</button>
+            `;
+            resultsDiv.appendChild(resultItem);
+        });
+
+        // 書籍を選択した場合にフォームに入力する
+        document.querySelectorAll('.select-book').forEach(button => {
+            button.addEventListener('click', function() {
+                document.getElementById('title').value = this.getAttribute('data-title');
+                document.getElementById('author').value = this.getAttribute('data-author');
+                document.getElementById('description').value = this.getAttribute('data-description');
+            });
+        });
+    }
+</script>
+
+
 @endsection
