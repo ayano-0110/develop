@@ -29,6 +29,8 @@
     }
   </style>
 </head>
+
+
  <body>
   <hr> <!-- ジャンル登録のページへ飛ぶ -->
   <div class="container">
@@ -72,42 +74,72 @@
 </html>
 
 
-  <div class="container">
-  <div class="row">
-    <!-- 1つ目のボックス -->
-    <div class="col-md-4 mb-4">
-     <a href="{{ route('book.bookregister') }}"  class="d-block" style="text-decoration: none;">
-      <div class="box p-3 border bg-white d-flex justify-content-center align-items-center" style="min-height: 250px;">
-       <span class="fs-4 text-dark">登録</span>
-      </div>
-     </a>
+<div class="container">
+    <p>編集済み</p>
+        <hr color="#c0c0c0">
+        @if (!is_null($headline))
+            <div class="row">
+                <div class="headline col-md-10 mx-auto">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="caption mx-auto">
+                                
+                                <div class="title p-2">
+                                    <h1>{{ Str::limit($headline->title, 70) }}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="body mx-auto">{{ Str::limit($headline->body, 650) }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ route('booksearch', ['id' => $headline->id]) }}">詳細</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+        <hr color="#c0c0c0">
+        <div class="row">
+            <div class="posts col-md-8 mx-auto mt-3">
+                @foreach($posts as $post)
+                    <div class="post">
+                        <div class="row">
+                            <div class="text col-md-6">
+                                <div class="date">
+                                    {{ $post->updated_at->format('Y年m月d日') }}
+                                </div>
+                                <div class="title">
+                                    {{ Str::limit($post->title, 150) }}
+                                </div>
+                                <div class="body mt-3">
+                                    {{ Str::limit($post->body, 1500) }}
+                                </div>
+                            </div>
+                            <div class="image col-md-6 text-right mt-4">
+                                @if ($post->image_path)
+                                    <img src="{{ secure_asset('storage/image/' . $post->image_path) }}">
+                                @endif
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{ route('news.detail', ['id' => $post->id]) }}">詳細</a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr color="#c0c0c0">
+                @endforeach
+            </div>
+        </div>
     </div>
-    <!-- 2つ目のボックス -->
-    <div class="col-md-4 mb-4">
-     <a href="{{ route('book.bookregister') }}"  class="d-block" style="text-decoration: none;">
-      <div class="box p-3 border bg-white d-flex justify-content-center align-items-center" style="min-height: 250px;">
-       <span class="fs-4 text-dark">登録</span>
-      </div>
-     </a>
     </div>
-    <!-- 3つ目のボックス -->
-    <div class="col-md-4 mb-4">
-     <a href="{{ route('book.bookregister') }}"  class="d-block" style="text-decoration: none;">
-      <div class="box p-3 border bg-white d-flex justify-content-center align-items-center" style="min-height: 250px;">
-       <span class="fs-4 text-dark">登録</span>
-      </div>
-     </a>
-    </div>
-    </div>
-  </div>
-</div>
-
-
-@if (count($errors) > 0)
-    <ul>
-    @foreach($errors->all() as $e)
-        <li>{{ $e }}</li>
-    @endforeach
-        </ul>
-    @endif
 @endsection
+
+
+
+
+
+
+
+
+
+  

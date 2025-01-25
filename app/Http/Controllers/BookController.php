@@ -80,17 +80,17 @@ class BookController extends Controller
         ]);
 
         // 登録後に詳細ページへリダイレクト
-        return redirect()->route('book.bookregister', ['book' => $book->id]);
+        return redirect()->route('book.booksearch', ['book' => $book->id]);
     }
 
     // 登録した本の情報を表示
     public function show($id)
     {
         $book = BookShelf::findOrFail($id);
-        return view('book.show', compact('book'));
+        return view('book.booksearch', compact('book'));
     }
 }
-///
+///ß
 
     // public function store(Request $request)
     // {

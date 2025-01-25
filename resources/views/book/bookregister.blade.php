@@ -19,7 +19,7 @@
     
     <!-- 検索結果表示 -->
     <div id="searchResults" class="mt-4"></div>
-    <form action="{{ route('book.booksearch') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('booksearch.search') }}" method="post">
         @csrf
 
         <div class="form-group">
@@ -51,7 +51,6 @@
 
     </form>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 
