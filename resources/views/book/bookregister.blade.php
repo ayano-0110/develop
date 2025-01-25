@@ -19,11 +19,11 @@
     
     <!-- 検索結果表示 -->
     <div id="searchResults" class="mt-4"></div>
-   
+    <form action="{{ route('book.booksearch') }}" method="post" enctype="multipart/form-data">
         @csrf
-        <h4>入力して登録</h4>
+
         <div class="form-group">
-            <label for="title">本のタイトル</label>
+            <label for="title">タイトル</label>
             <input type="text" id="title" name="title" class="form-control" required>
         </div>
 
@@ -39,7 +39,7 @@
 
         <div class="form-group">
             <label for="impression">感想</label>
-            <textarea id="impression" name="mimpression" rows="10" cols="50" class="form-control"></textarea>
+            <textarea id="impression" name="impression" rows="10" cols="50" class="form-control"></textarea>
         </div>
 
         <div class="form-group">
@@ -51,6 +51,9 @@
 
     </form>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
 
 <script>
     // ISBN検索ボタンを押すと書籍情報をGoogle Books APIで取得
@@ -98,7 +101,6 @@
             button.addEventListener('click', function() {
                 document.getElementById('title').value = this.getAttribute('data-title');
                 document.getElementById('author').value = this.getAttribute('data-author');
-                document.getElementById('description').value = this.getAttribute('data-description');
             });
         });
     }

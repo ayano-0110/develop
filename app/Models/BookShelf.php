@@ -14,7 +14,7 @@ class BookShelf extends Model
     protected $guarded = array('id');//バリデーション（データ登録する前に不完全でないかチェックする）
 
     public static $rules = array(
-        'title' => 'required',//ここはユーザーが登録する部分に変える
+        'title' => 'required',
         'author' => 'required',
         'summary'  => 'nullable',
         'impression'  => 'nullable',

@@ -8,95 +8,69 @@
 {{-- book.blade.phpの@yield('content')に以下のタグを埋め込む --}}
 @section('content')
 
-<div class="container">
-    <h3>検索して登録</h3>
-    
-    <!-- ISBN入力と検索ボタン -->
-    <div class="form-group">
-        <label for="isbn">ISBN</label>
-        <input type="text" id="isbn" name="isbn" class="form-control" placeholder="ISBNを入力" required>
-        <button type="button" id="searchBtn" class="btn btn-primary mt-2">検索</button>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ブートストラップレイアウト</title>
+  <!-- Bootstrap 5のCDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <!-- 左側のボックス -->
+      <div class="col-md-6">
+        <div class="p-3 border bg-white d-flex justify-content-center align-items-center" style="min-height: 500px;">
+          <h4>画像が入る</h4>
+        </div>
+      </div>
+
+      <!-- 右側の入力フォーム -->
+      <div class="col-md-6">
+        <div class="p-3 bg-white">
+          <h4>入力フォーム</h4>
+          <form>
+            <div class="mb-3">
+              <label for="title" class="form-label">タイトル</label>
+              <input type="title" class="form-control" id="title">
+            </div>
+            <div class="mb-3">
+              <label for="author" class="form-label">著者</label>
+              <input type="author" class="form-control" id="author">
+            </div>
+            <div class="mb-3">
+              <label for="summary" class="form-label">あらすじ</label>
+              <textarea id="impression" name="impression" rows="7" cols="50" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">送信</button>
+          </form>
+        </div>
+      </div>
+
+
+      
+        <div class="p-3 bg-white">
+        <form>
+            <div class="mb-3">
+              <label for="impression" class="form-label">感想</label>
+              <textarea id="impression" name="impression" rows="10" cols="50" class="form-control"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="memo" class="form-label">メモ</label>
+              <textarea id="memo" name="memo" rows="10" cols="50" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">送信</button>
+          </form>
+
     </div>
-    
-    <!-- 検索結果表示 -->
-    <div id="searchResults" class="mt-4"></div>
-   
-        @csrf
+  </div>
 
-        <div class="form-group">
-            <label for="title">本のタイトル</label>
-            <input type="text" id="title" name="title" class="form-control" required>
-        </div>
+  <!-- Bootstrap 5のJS CDN（オプション） -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
 
-        <div class="form-group">
-            <label for="author">著者</label>
-            <input type="text" id="author" name="author" class="form-control" required>
-        </div>
 
-        <div class="form-group">
-            <label for="summary">あらすじ</label>
-            <textarea id="summary" name="summary" rows="7" cols="50" class="form-control"></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="memo">感想・メモ</label>
-            <textarea id="memo" name="memo" rows="10" cols="50" class="form-control"></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-primary mt-2 mb-5">登録</button>
-
-    </form>
-</div>
-
-<script>
-    // ISBN検索ボタンを押すと書籍情報をGoogle Books APIで取得
-    document.getElementById('searchBtn').addEventListener('click', function() {
-        const isbn = document.getElementById('isbn').value.trim();
-        if (isbn.length === 13) { // ISBNは13桁であることを確認
-            fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.items) {
-                        displaySearchResults(data.items);
-                    } else {
-                        alert("書籍情報が見つかりませんでした。");
-                    }
-                })
-                .catch(error => {
-                    console.error("エラー:", error);
-                    alert("エラーが発生しました。");
-                });
-        } else {
-            alert("正しいISBNを入力してください。");
-        }
-    });
-
-    // 検索結果を表示する関数
-    function displaySearchResults(items) {
-        const resultsDiv = document.getElementById('searchResults');
-        resultsDiv.innerHTML = ''; // 以前の検索結果をクリア
-
-        items.forEach(item => {
-            const book = item.volumeInfo;
-            const resultItem = document.createElement('div');
-            resultItem.classList.add('search-result-item');
-            resultItem.innerHTML = `
-                <h5>${book.title}</h5>
-                <p>著者: ${book.authors ? book.authors.join(", ") : '不明'}</p>
-                <p>${book.description ? book.description.slice(0, 100) + '...' : '説明はありません'}</p>
-                <button class="btn btn-primary select-book" data-title="${book.title}" data-author="${book.authors ? book.authors.join(", ") : ''}" data-description="${book.description || ''}">選択</button>
-            `;
-            resultsDiv.appendChild(resultItem);
-        });
-
-        // 書籍を選択した場合にフォームに入力する
-        document.querySelectorAll('.select-book').forEach(button => {
-            button.addEventListener('click', function() {
-                document.getElementById('title').value = this.getAttribute('data-title');
-                document.getElementById('author').value = this.getAttribute('data-author');
-                document.getElementById('description').value = this.getAttribute('data-description');
-            });
-        });
-    }
-</script>
 @endsection

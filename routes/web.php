@@ -39,12 +39,12 @@ Route::controller(App\Http\Controllers\BookController::class)->group(function() 
     Route::get('booktop', 'add')->name('booktop.add')->middleware('auth');
     Route::post('booktop')->name('booktop');
     Route::get('bookshelf', 'select')->name('bookshelf.select');
-    Route::post('bookshelf')->name('bookshelf');
+    Route::post('bookshelf')->name('book.bookshelf');
     Route::get('bookregister', 'create')->name('bookregister.create');
     // Route::get('bookregister', 'showForm')->name('bookregister.showForm');
-    Route::post('bookregister', 'register')->name('bookregister');
+    Route::post('bookregister', 'register')->name('book.bookregister');
     Route::get('booksearch', 'search')->name('booksearch.search');
-    Route::post('booksearch')->name('booksearch');
+    Route::post('booksearch')->name('book.booksearch');
     Route::get('bookgenre', 'sort')->name('bookgenre.sort');
     Route::post('bookgenre')->name('bookgenre');
     Route::get('{book}', 'show')->name('book.show');

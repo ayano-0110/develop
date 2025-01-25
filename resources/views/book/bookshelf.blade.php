@@ -35,7 +35,7 @@
   <div class="row">
     <!-- 1つ目のボックス -->
     <div class="col-md-3 ">
-     <a href="{{ route('bookregister') }}"  class="d-block" style="text-decoration: none;">
+     <a href="{{ route('book.bookregister') }}"  class="d-block" style="text-decoration: none;">
       <div class="box p-3 border bg-white d-flex justify-content-center align-items-center" >
        <span class="fs-6 text-dark">ジャンル</span>
       </div>
@@ -43,7 +43,7 @@
     </div>
     <!-- 2つ目のボックス -->
     <div class="col-md-3 ">
-     <a href="{{ route('bookregister') }}"  class="d-block" style="text-decoration: none;">
+     <a href="{{ route('book.bookregister') }}"  class="d-block" style="text-decoration: none;">
       <div class="box p-3 border bg-white d-flex justify-content-center align-items-center" >
        <span class="fs-6 text-dark">ジャンル</span>
       </div>
@@ -51,7 +51,7 @@
     </div>
     <!-- 3つ目のボックス -->
     <div class="col-md-3 ">
-     <a href="{{ route('bookregister') }}"  class="d-block" style="text-decoration: none;">
+     <a href="{{ route('book.bookregister') }}"  class="d-block" style="text-decoration: none;">
       <div class="box p-3 border bg-white d-flex justify-content-center align-items-center" >
        <span class="fs-6 text-dark">ジャンル</span>
       </div>
@@ -59,7 +59,7 @@
     </div>
     <!-- 4つ目のボックス -->
     <div class="col-md-3 ">
-     <a href="{{ route('bookregister') }}"  class="d-block" style="text-decoration: none;">
+     <a href="{{ route('book.bookregister') }}"  class="d-block" style="text-decoration: none;">
       <div class="box p-3 border bg-white d-flex justify-content-center align-items-center" >
        <span class="fs-6 text-dark">ジャンル</span>
       </div>
@@ -76,7 +76,7 @@
   <div class="row">
     <!-- 1つ目のボックス -->
     <div class="col-md-4 mb-4">
-     <a href="{{ route('bookregister') }}"  class="d-block" style="text-decoration: none;">
+     <a href="{{ route('book.bookregister') }}"  class="d-block" style="text-decoration: none;">
       <div class="box p-3 border bg-white d-flex justify-content-center align-items-center" style="min-height: 250px;">
        <span class="fs-4 text-dark">登録</span>
       </div>
@@ -84,7 +84,7 @@
     </div>
     <!-- 2つ目のボックス -->
     <div class="col-md-4 mb-4">
-     <a href="{{ route('bookregister') }}"  class="d-block" style="text-decoration: none;">
+     <a href="{{ route('book.bookregister') }}"  class="d-block" style="text-decoration: none;">
       <div class="box p-3 border bg-white d-flex justify-content-center align-items-center" style="min-height: 250px;">
        <span class="fs-4 text-dark">登録</span>
       </div>
@@ -92,35 +92,12 @@
     </div>
     <!-- 3つ目のボックス -->
     <div class="col-md-4 mb-4">
-     <a href="{{ route('bookregister') }}"  class="d-block" style="text-decoration: none;">
+     <a href="{{ route('book.bookregister') }}"  class="d-block" style="text-decoration: none;">
       <div class="box p-3 border bg-white d-flex justify-content-center align-items-center" style="min-height: 250px;">
        <span class="fs-4 text-dark">登録</span>
       </div>
      </a>
     </div>
-    <!-- 4つ目のボックス -->
-    <div class="col-md-4 mb-4">
-     <a href="{{ route('bookregister') }}"  class="d-block" style="text-decoration: none;">
-      <div class="box p-3 border bg-white d-flex justify-content-center align-items-center" style="min-height: 250px;">
-       <span class="fs-4 text-dark">登録</span>
-      </div>
-     </a>
-    </div>
-     <!-- 5つ目のボックス -->
-     <div class="col-md-4 mb-4">
-     <a href="{{ route('bookregister') }}"  class="d-block" style="text-decoration: none;">
-      <div class="box p-3 border bg-white d-flex justify-content-center align-items-center" style="min-height: 250px;">
-       <span class="fs-4 text-dark">登録</span>
-      </div>
-     </a>
-    </div>
-     <!-- 6つ目のボックス -->
-     <div class="col-md-4 mb-4">
-     <a href="{{ route('bookregister') }}"  class="d-block" style="text-decoration: none;">
-      <div class="box p-3 border bg-white d-flex justify-content-center align-items-center" style="min-height: 250px;">
-       <span class="fs-4 text-dark">登録</span>
-      </div>
-     </a>
     </div>
   </div>
 </div>

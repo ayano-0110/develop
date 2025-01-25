@@ -12,7 +12,7 @@
   <div class="row">
     <!-- 1つ目のボックス -->
     <div class="col-md-6 mb-4">
-     <a href="{{ route('bookshelf') }}" class="d-block" style="text-decoration: none;">
+     <a href="{{ route('book.bookshelf') }}" class="d-block" style="text-decoration: none;">
       <div class="box p-3 border bg-danger bg-gradient rounded d-flex justify-content-center align-items-center" style="min-height: 200px;">
        <span class="fs-4 text-white">My本棚</span>
       </div>
