@@ -12,20 +12,20 @@ class BookController extends Controller
         return view('book.booktop');
     }
 
-    public function select()
-    {
-        return view('book.bookshelf');
-    }
+    // public function select()
+    // {
+    //     return view('book.bookshelf');
+    // }
 
     public function create()
     {
         return view('book.bookregister');
     }
 
-    public function search()
-    {
-        return view('book.booksearch');
-    }
+    // public function search()
+    // {
+    //     return view('book.booksearch');
+    // }
 
     public function sort()
     {
@@ -54,25 +54,8 @@ class BookController extends Controller
 
         ]);
 
-        // // フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する
-        // if (isset($form['image'])) {
-        //     $path = $request->file('image')->store('public/image');
-        //     $bookshelf->image_path = basename($path);
-        // } else {
-        //     $news->image_path = null;
-        // }
-        public function select(Request $request)
-        {
-            $cond_title = $request->cond_title;
-            if ($cond_title != '') {
-                // 検索されたら検索結果を取得する
-                $posts = BookShelf::where('title', $cond_title)->get();
-            } else {
-                // それ以外はすべてのニュースを取得する
-                $posts = BookShelf::all();
-            }
-            return view('book.booksearch', ['posts' => $posts, 'cond_title' => $cond_title]);
-        }
+       
+       
 
         // データを保存
         $book = BookShelf::create([
@@ -87,8 +70,34 @@ class BookController extends Controller
         ]);
 
         // 登録後に詳細ページへリダイレクト
-        return redirect()->route('book.booksearch', ['book' => $book->id]);
+        return redirect()->route('bookshelf.select', ['book' => $book->id]);
     }
+
+
+    public function select(Request $request)
+    {
+        $cond_title = $request->cond_title;
+        if ($cond_title != '') {
+            // 検索されたら検索結果を取得する
+            $posts = BookShelf::where('title', $cond_title)->get();
+        } else {
+            // それ以外はすべてのニュースを取得する
+            $posts = BookShelf::all();
+        }
+        return view('book.bookshelf', ['posts' => $posts, 'cond_title' => $cond_title]);
+    }
+
+    public function search(Request $request)
+    {
+        $book = new BookShelf;
+        // BookShelf Modelからデータを取得する
+        $book = BookShelf::find($request->id);
+        if (empty($book)) {
+            abort(404);
+        }
+        return view('book.booksearch', ['book_form' => $book]);
+    }
+
 
     // 登録した本の情報を表示
     public function show($id)
@@ -97,25 +106,11 @@ class BookController extends Controller
         return view('book.booksearch', compact('book'));
     }
 }
-///ß
 
-    // public function store(Request $request)
-    // {
-    //     // バリデーション?
-    //     $request->validate([
-    //         'title' => 'required|string|max:255',
-    //         'author' => 'required|string|max:255',
-    //         'description' => 'nullable|string',
-    //     ]);
 
 
         // 本を保存する処理
         // 例えば、Bookモデルを使ってDBに保存する場合：
         // Book::create($request->all());
 
-        
-
-        // booktopにリダイレクトする
-        //return redirect('book.bookshelf');//合ってる？
-//     }
-// }
+    

@@ -1,11 +1,5 @@
-{{-- layouts/book.blade.phpを読み込む --}}
 @extends('layouts.book')
 
-
-{{-- book.blade.phpの@yield('title')に'検索して登録'を埋め込む --}}
-@section('title', '検索して登録')
-
-{{-- book.blade.phpの@yield('content')に以下のタグを埋め込む --}}
 @section('content')
 
 <!DOCTYPE html>
@@ -29,41 +23,32 @@
 
       <!-- 右側の入力フォーム -->
       <div class="col-md-6">
-        <div class="p-3 bg-white">
-          <h4>入力フォーム</h4>
-          <form>
-            <div class="mb-3">
-              <label for="title" class="form-label">タイトル</label>
-              <input type="title" class="form-control" id="title">
+            <div class="mb-5">
+              <h5>タイトル</h5>
+              <p>{{$book_form->title}}</p>
             </div>
-            <div class="mb-3">
-              <label for="author" class="form-label">著者</label>
-              <input type="author" class="form-control" id="author">
+            <div class="mb-5">
+              <h5>著者</h5>
+              <p>{{$book_form->author}}</p>
             </div>
-            <div class="mb-3">
-              <label for="summary" class="form-label">あらすじ</label>
-              <textarea id="impression" name="impression" rows="7" cols="50" class="form-control"></textarea>
+            <div class="mb-5">
+              <h5>あらすじ</h5>
+              <p>{{$book_form->summary}}</p>
             </div>
-            <button type="submit" class="btn btn-primary">送信</button>
-          </form>
-        </div>
       </div>
 
 
       
-        <div class="p-3 bg-white">
-        <form>
-            <div class="mb-3">
-              <label for="impression" class="form-label">感想</label>
-              <textarea id="impression" name="impression" rows="10" cols="50" class="form-control"></textarea>
+        <div class="p-3">
+            <div class="mb-5">
+              <h5>感想</h5>
+              <p>{{$book_form->impression}}</p>
             </div>
-            <div class="mb-3">
-              <label for="memo" class="form-label">メモ</label>
-              <textarea id="memo" name="memo" rows="10" cols="50" class="form-control"></textarea>
+            <div class="mb-5">
+              <h5>メモ</h5>
+              <p>{{$book_form->memo}}</p>
             </div>
-            <button type="submit" class="btn btn-primary">送信</button>
-          </form>
-
+        </div>
     </div>
   </div>
 

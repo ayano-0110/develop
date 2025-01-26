@@ -1,11 +1,5 @@
-{{-- layouts/book.blade.phpを読み込む --}}
 @extends('layouts.book')
 
-
-{{-- book.blade.phpの@yield('title')に'本棚'を埋め込む --}}
-@section('title', '本棚を表示')
-
-{{-- book.blade.phpの@yield('content')に以下のタグを埋め込む --}}
 @section('content')
 <!DOCTYPE html>
 <html lang="ja">
@@ -99,12 +93,27 @@
                                 @endif
                             </div>
                             <div class="col-md-6">
-                                <a href="{{ route('news.detail', ['id' => $post->id]) }}">詳細</a>
+                                <a href="{{ route('booksearch.search', ['id' => $post->id]) }}">詳細</a>
                             </div>
                         </div>
                     </div>
                     <hr color="#c0c0c0">
                 @endforeach
+
+
+                <div class="container">
+                  <div class="row">
+                    <!-- 登録ボックス -->
+                    <div class="mb-4">
+                     <a href="{{ route('book.bookregister') }}"  class="d-block" style="text-decoration: none;">
+                      <div class="box p-3 border bg-white d-flex justify-content-center align-items-center" style="min-height: 50px;">
+                        <span class="fs-5 text-dark">登録</span>
+                      </div>
+                     </a>
+                    </div>
+                  </div>
+               </div>
+
             </div>
         </div>
     </div>

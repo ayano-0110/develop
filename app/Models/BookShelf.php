@@ -9,7 +9,7 @@ class BookShelf extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'author', 'summary', 'impression', 'memo', 'image_path', 'genre_id'];
+    //protected $fillable = ['title', 'author', 'summary', 'impression', 'memo', 'image_path', 'genre_id'];
 
     protected $guarded = array('id');//バリデーション（データ登録する前に不完全でないかチェックする）
 
