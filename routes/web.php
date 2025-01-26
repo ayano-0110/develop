@@ -43,8 +43,8 @@ Route::controller(App\Http\Controllers\BookController::class)->group(function() 
     Route::get('bookregister', 'create')->name('bookregister.create');
     // Route::get('bookregister', 'showForm')->name('bookregister.showForm');
     Route::post('bookregister', 'register')->name('book.bookregister');
-    //Route::get('booksearch', 'search')->name('booksearch.search');
-    Route::post('booksearch', 'search')->name('booksearch.search');
+    Route::get('booksearch', 'search')->name('booksearch.search');
+    //Route::post('booksearch', 'search')->name('booksearch.search');
     Route::get('bookgenre', 'sort')->name('bookgenre.sort');
     Route::post('bookgenre')->name('bookgenre');
     Route::get('{book}', 'show')->name('book.show');

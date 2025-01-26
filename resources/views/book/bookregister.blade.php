@@ -17,9 +17,18 @@
         <button type="button" id="searchBtn" class="btn btn-primary mt-2">検索</button>
     </div>
     
+
+    @if (count($errors) > 0)
+        <ul>
+            @foreach($errors->all() as $e)
+                <li>{{ $e }}</li>
+            @endforeach
+        </ul>
+    @endif
+
     <!-- 検索結果表示 -->
     <div id="searchResults" class="mt-4"></div>
-    <form action="{{ route('booksearch.search') }}" method="post">
+    <form action="{{ route('book.bookregister') }}" method="post">
         @csrf
 
         <div class="form-group">

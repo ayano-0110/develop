@@ -42,9 +42,6 @@ class BookController extends Controller
     // 本の情報を保存する
     public function register(Request $request)
     {
-     
-
-        
         $request->validate([
             'title' => 'required|string',//必須
             'author' => 'required|string',
@@ -53,10 +50,9 @@ class BookController extends Controller
             'memo' => 'nullable|string',
             'image_path' => 'nullable|string',
             'genre_id' => 'nullable|string',
-            'user_id' => 'required|integer|exists:users,id|in:' . auth()->id(),
+            // 'user_id' => 'required|integer|exists:users,id|in:' . auth()->id(),
 
         ]);
-
 
         // // フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する
         // if (isset($form['image'])) {
@@ -65,7 +61,18 @@ class BookController extends Controller
         // } else {
         //     $news->image_path = null;
         // }
-
+        public function select(Request $request)
+        {
+            $cond_title = $request->cond_title;
+            if ($cond_title != '') {
+                // 検索されたら検索結果を取得する
+                $posts = BookShelf::where('title', $cond_title)->get();
+            } else {
+                // それ以外はすべてのニュースを取得する
+                $posts = BookShelf::all();
+            }
+            return view('book.booksearch', ['posts' => $posts, 'cond_title' => $cond_title]);
+        }
 
         // データを保存
         $book = BookShelf::create([
@@ -76,7 +83,7 @@ class BookController extends Controller
             'memo' => $request->input('memo'),
             'image_path' => $request->input('image_path'),
             'genre_id' => $request->input('genre_id'),
-            'user_id' => $request->input('user_id'),
+            'user_id' => auth()->id(),
         ]);
 
         // 登録後に詳細ページへリダイレクト
