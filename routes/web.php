@@ -48,5 +48,6 @@ Route::controller(App\Http\Controllers\BookController::class)->group(function() 
     Route::get('bookgenre', 'sort')->name('bookgenre.sort');
     Route::post('bookgenre')->name('bookgenre');
     Route::get('{book}', 'show')->name('book.show');
+    Route::get('delete', 'delete')->name('delete.delete');
 });    //getとpost合ってるか？ちゃんと理解できてない（）の中には何を入れればいいのか？getも「name」はいるのか？
        //↑グループ化しようとしたらエラー出た

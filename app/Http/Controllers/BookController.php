@@ -105,6 +105,22 @@ class BookController extends Controller
         $book = BookShelf::findOrFail($id);
         return view('book.booksearch', compact('book'));
     }
+
+
+    public function delete(Request $request)
+    {
+        // 該当する Modelを取得
+        $book = BookShelf::find($request->id);
+
+        // 削除する
+        $book->delete();
+
+        return redirect('book.bookshelf');
+    }
+
+
+
+
 }
 
 
