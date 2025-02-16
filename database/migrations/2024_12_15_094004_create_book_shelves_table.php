@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('title'); 
             $table->string('author'); //著者
-            $table->string('summary'); //あらすじ
-            $table->string('impression');//感想
-            $table->string('memo');//メモ
+            $table->string('summary')->nullable();//あらすじ
+            $table->string('impression')->nullable();//感想
+            $table->string('memo')->nullable();//メモ
             $table->string('image_path')->nullable();  
             $table->bigInteger('user_id');
             $table->bigInteger('genre_id')->nullable();//ジャンルテーブル

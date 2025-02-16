@@ -55,6 +55,13 @@
             <label for="memo">メモ</label>
             <textarea id="memo" name="memo" rows="10" cols="50" class="form-control"></textarea>
         </div>
+        <!-- 本の表紙画像をフォームで送るためのhidden input -->   
+        <input type="hidden" id="thumbnail_url" name="thumbnail_url">
+        <!-- 選択された本の表紙を表示する -->
+        <div class="form-group mt-3">
+            <label>表紙</label><br>
+            <img id="thumbnail" src="https://via.placeholder.com/128x180?text=No+Image" alt="Book Cover" class="img-thumbnail">
+        </div>
 
         <button type="submit" class="btn btn-primary mt-2 mb-5">登録</button>
 
@@ -71,6 +78,7 @@
             fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`)
                 .then(response => response.json())
                 .then(data => {
+
                     if (data.items) {
                         displaySearchResults(data.items);
                     } else {
@@ -93,13 +101,16 @@
 
         items.forEach(item => {
             const book = item.volumeInfo;
+            const thumbnail = book.imageLinks ? book.imageLinks.thumbnail : 'https://via.placeholder.com/128x180?text=No+Image'; // 画像がない場合の代替画像
+
+
             const resultItem = document.createElement('div');
             resultItem.classList.add('search-result-item');
             resultItem.innerHTML = `
                 <h5>${book.title}</h5>
                 <p>著者: ${book.authors ? book.authors.join(", ") : '不明'}</p>
                 <p>${book.description ? book.description.slice(0, 100) + '...' : '説明はありません'}</p>
-                <button class="btn btn-primary select-book" data-title="${book.title}" data-author="${book.authors ? book.authors.join(", ") : ''}" data-description="${book.description || ''}">選択</button>
+                <button class="btn btn-primary select-book" data-title="${book.title}" data-author="${book.authors ? book.authors.join(", ") : ''} " data-description="${book.description || ''}" data-thumbnail="${book.thumbnail}">選択</button>
             `;
             resultsDiv.appendChild(resultItem);
         });
@@ -109,6 +120,12 @@
             button.addEventListener('click', function() {
                 document.getElementById('title').value = this.getAttribute('data-title');
                 document.getElementById('author').value = this.getAttribute('data-author');
+                document.getElementById('description').value = this.getAttribute('data-description');
+                document.getElementById('thumbnail').src = this.getAttribute('data-thumbnail');
+                document.getElementById('thumbnail_url').value = this.getAttribute('data-thumbnail'); // フォーム送信用
+
+                
+
             });
         });
     }

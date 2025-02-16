@@ -42,21 +42,33 @@
     <body>
       <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-info bg-gradient shadow-sm">
-            <div class="container">
+            <div class="container" >
                 <a class="navbar-brand" href="{{ url('/') }}">
+                <img class="logo" src="/develop/logo.images/logo1.png" alt="Logo">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                <!-- ナビを開閉 -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+                    
+                    <!-- ナビバーを左寄せ -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                             <a class="nav-link" href="/bookshelf">My本棚</a>
+                        </li>
+                        <li class="nav-item">
+                             <a class="nav-link" href="/bookshelf">検索</a>
+                        </li>
+                        <li class="nav-item">
+                             <a class="nav-link" href="/bookshelf">古本を探す</a>
+                        </li>
+                        <li class="nav-item">
+                             <a class="nav-link" href="/bookshelf">チャット</a>
+                        </li>
                     </ul>
-
-                    <!-- Right Side Of Navbar -->
+                    <!-- ナビバーを右寄せ -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
@@ -81,7 +93,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('ログアウト') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

@@ -115,10 +115,8 @@ class BookController extends Controller
         // 削除する
         $book->delete();
 
-        return redirect('book.bookshelf');
+        return redirect('bookshelf');
     }
-
-
 
 
 }
