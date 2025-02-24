@@ -101,8 +101,8 @@
 
         items.forEach(item => {
             const book = item.volumeInfo;
-            const thumbnail = book.imageLinks ? book.imageLinks.thumbnail : 'https://via.placeholder.com/128x180?text=No+Image'; // 画像がない場合の代替画像
-
+            const thumbnail = book.imageLinks ? book.imageLinks.thumbnail : './images/no.image.png'; // 画像がない場合の代替画像
+        
 
             const resultItem = document.createElement('div');
             resultItem.classList.add('search-result-item');

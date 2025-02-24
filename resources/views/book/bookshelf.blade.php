@@ -86,7 +86,8 @@
                         </div>
                         <div class="image text-center mt-4">
                             @if ($post->image_path)
-                                <img src="{{ secure_asset('storage/image/' . $post->image_path) }}" class="img-fluid">
+                                  {{-- 画像がURL形式ならそのまま表示 --}}
+                                  <img src="{{ $post->image_path }}" class="img-fluid">
                             @endif
                         </div>
                         <div class="col-md-12 text-center mt-3">

@@ -42,13 +42,14 @@ class BookController extends Controller
     // 本の情報を保存する
     public function register(Request $request)
     {
+        //dd($request->input('thumbnail_url'));
         $request->validate([
             'title' => 'required|string',//必須
             'author' => 'required|string',
             'summary' => 'nullable|string',//空欄でもOK
             'impression' => 'nullable|string',
             'memo' => 'nullable|string',
-            'image_path' => 'nullable|string',
+            'thumbnail_url' => 'nullable|string',
             'genre_id' => 'nullable|string',
             // 'user_id' => 'required|integer|exists:users,id|in:' . auth()->id(),
 
@@ -64,7 +65,7 @@ class BookController extends Controller
             'summary' => $request->input('summary'),
             'impression' => $request->input('impression'),
             'memo' => $request->input('memo'),
-            'image_path' => $request->input('image_path'),
+            'image_path' => $request->input('thumbnail_url'),
             'genre_id' => $request->input('genre_id'),
             'user_id' => auth()->id(),
         ]);
