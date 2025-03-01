@@ -120,6 +120,50 @@ class BookController extends Controller
     }
 
 
+    
+    public function edit(Request $request)
+    {
+        dd($request->id);
+        // Validationをかける
+        //$this->validate($request, BookShelf::$rules);
+        // BookShelf Modelからデータを取得する
+        $book = BookShelf::find($request->id);
+        if (empty($book)) {
+            abort(404);
+        }
+        return view('book.bookedit', ['book_form' => $book]);
+    }
+
+
+
+    public function update(Request $request)
+    {
+        // BookShelf Modelからデータを取得する
+        $book = BookShelf::find($request->id);
+        // 送信されてきたフォームデータを格納する
+        $book_form = $request->all();
+
+        if ($request->remove == 'true') {
+            $book_form['image_path'] = null;
+        } elseif ($request->file('image')) {
+            $path = $request->file('image')->store('public/images/no.image.png');
+            $book_form['image_path'] = basename($path);
+        } else {
+            $book_form['image_path'] = $book->image_path;
+        }
+
+        unset($book_form['image']);
+        unset($book_form['remove']);
+        unset($book_form['_token']);
+
+        // 該当するデータを上書きして保存する
+        $book->fill($book_form)->save();
+
+        return redirect('book/booksearch');
+    }
+
+
+
 }
 
 

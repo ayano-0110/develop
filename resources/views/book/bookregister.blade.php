@@ -60,7 +60,7 @@
         <!-- 選択された本の表紙を表示する -->
         <div class="form-group mt-3">
             <label>表紙</label><br>
-            <img id="thumbnail" src="" alt="Book Cover" class="img-thumbnail">
+            <img id="thumbnail" src="./images/no.image.png" alt="Book Cover" class="img-thumbnail">
         </div>
 
         <button type="submit" class="btn btn-primary mt-2 mb-5">登録</button>
