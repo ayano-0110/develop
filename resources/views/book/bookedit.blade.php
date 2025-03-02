@@ -19,37 +19,37 @@
                             @endforeach
                         </ul>
                     @endif
-                    <div class="form-group row">
+                    <div class="form-group row mt-3 mb-3">
                         <label class="col-md-2" for="title">タイトル</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="title" value="{{ $book_form->title }}">
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row mt-3 mb-3">
                         <label class="col-md-2" for="author">著者</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="author" rows="20">{{ $book_form->author }}</textarea>
+                            <textarea class="form-control" name="author" rows="1">{{ $book_form->author }}</textarea>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row mt-3 mb-3">
                         <label class="col-md-2" for="asummary">あらすじ</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="summary" rows="20">{{ $book_form->summary }}</textarea>
+                            <textarea class="form-control" name="summary" rows="10">{{ $book_form->summary }}</textarea>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row mt-3 mb-3">
                         <label class="col-md-2" for="impression">感想</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="impression" rows="20">{{ $book_form->impression }}</textarea>
+                            <textarea class="form-control" name="impression" rows="10">{{ $book_form->impression }}</textarea>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row mt-3 mb-3">
                         <label class="col-md-2" for="memo">メモ</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="memo" rows="20">{{ $book_form->memo }}</textarea>
+                            <textarea class="form-control" name="memo" rows="10">{{ $book_form->memo }}</textarea>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row mt-3 mb-3">
                         <label class="col-md-2" for="image">画像</label>
                         <div class="col-md-10">
                             <input type="file" class="form-control-file" name="image">
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row mt-3 mb-5">
                         <div class="col-md-10">
                             <input type="hidden" name="id" value="{{ $book_form->id }}">
                             @csrf

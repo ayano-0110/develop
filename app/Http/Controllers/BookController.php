@@ -123,7 +123,7 @@ class BookController extends Controller
     
     public function edit(Request $request)
     {
-        dd($request->id);
+        
         // Validationをかける
         //$this->validate($request, BookShelf::$rules);
         // BookShelf Modelからデータを取得する
@@ -159,7 +159,7 @@ class BookController extends Controller
         // 該当するデータを上書きして保存する
         $book->fill($book_form)->save();
 
-        return redirect('book/booksearch');
+        return redirect()->route('booksearch.search', ['id' => $book->id]);//id?
     }
 
 

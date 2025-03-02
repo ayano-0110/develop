@@ -49,9 +49,15 @@ Route::controller(App\Http\Controllers\BookController::class)->group(function() 
     Route::post('bookgenre')->name('bookgenre');
     Route::get('{book}', 'show')->name('book.show');
     Route::delete('delete', 'delete')->name('delete.delete');
-    Route::get('bookedit/{id}', 'BookController@edit')->name('bookedit.edit');
-    Route::post('bookedit/{id}', 'BookController@update')->name('bookedit.update');
+    Route::get('bookedit/{id}', 'edit')->name('bookedit.edit');
+    Route::post('bookedit/{id}', 'update')->name('bookedit.update');
 }); 
+
+
+
+
+
+
 
 
        //↑グループ化がよくわからない

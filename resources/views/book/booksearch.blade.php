@@ -48,11 +48,6 @@
               <p>{{$book_form->memo}}</p>
             </div>
             <div class="mb-5">
-  
-            <!-- <div class="mb-5">
-              <a href="{{ route('bookedit.edit') }}" class="btn btn-primary">編集</a>
-            </div> -->
-            <div>
               <a href="{{ route('bookedit.edit', ['id' => $book_form->id]) }}" class="btn btn-primary">編集</a>
            </div>
 
