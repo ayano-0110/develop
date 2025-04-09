@@ -14,41 +14,45 @@
 <body>
   <div class="container mt-5">
     <div class="row">
+
       <!-- 左側のボックス -->
       <div class="col-md-6">
-        <!-- <div class="p-3 border bg-white d-flex justify-content-center align-items-center" style="min-height: 500px;"> -->
-        <div id="imageBox" class="p-3 border bg-white d-flex justify-content-center align-items-center" style="min-height: 400px; width: 300px;">
-        <script src="{{ asset('js/booksearch.js') }}"></script>
+        <div class="p-3 border bg-white d-flex justify-content-center align-items-center" style="min-height: 400px; width: 300px;">
+        @if ($book->image_path)
+        {{-- 画像がURL形式ならそのまま表示 --}}
+        <img src="{{ $book->image_path }}" class="img-fluid" style="height: 100%; width: 100%; object-fit: cover;">
+
+        @endif
         </div>
       </div>
 
       <!-- 右側の入力フォーム -->
       <div class="col-md-6">
             <div class="mb-5">
-              <h5>タイトル</h5>
-              <p>{{$book_form->title}}</p>
+              <h6>タイトル</h6>
+              <p class="border p-2 rounded">{{$book->title}}</p>
             </div>
             <div class="mb-5">
-              <h5>著者</h5>
-              <p>{{$book_form->author}}</p>
+              <h6>著者</h6>
+              <p class="border p-2 rounded">{{$book->author}}</p>
             </div>
             <div class="mb-5">
-              <h5>あらすじ</h5>
-              <p>{{$book_form->summary}}</p>
+              <h6>あらすじ</h6>
+              <p class="border p-2 rounded">{{$book->summary}}</p>
             </div>
       </div>
 
       <div class="p-3">
             <div class="mb-5">
-              <h5>感想</h5>
-              <p>{{$book_form->impression}}</p>
+              <h6>感想</h6>
+              <p class="border p-2 rounded">{{$book->impression}}</p>
             </div>
             <div class="mb-5">
-              <h5>メモ</h5>
-              <p>{{$book_form->memo}}</p>
+              <h6>メモ</h6>
+              <p class="border p-2 rounded">{{$book->memo}}</p>
             </div>
             <div class="mb-5">
-              <a href="{{ route('bookedit.edit', ['id' => $book_form->id]) }}" class="btn btn-primary">編集</a>
+              <a href="{{ route('bookedit.edit', ['id' => $book->id]) }}" class="btn btn-primary">編集</a>
            </div>
 
       </div>

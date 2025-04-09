@@ -10,7 +10,7 @@
 <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>内容を編集</h2>
+                <h5>内容を編集</h5>
                 <form action="{{ route('bookedit.update', ['id' => $book_form->id]) }}" method="post" enctype="multipart/form-data">
                     @if (count($errors) > 0)
                         <ul>

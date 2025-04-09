@@ -90,14 +90,15 @@ class BookController extends Controller
 
     public function search(Request $request)
     {
-        $book = new BookShelf;
+     
         // BookShelf Modelからデータを取得する
         $book = BookShelf::find($request->id);
         if (empty($book)) {
             abort(404);
         }
-        return view('book.booksearch', ['book_form' => $book]);
+        return view('book.booksearch', ['book' => $book]);
     }
+
 
 
     // 登録した本の情報を表示
