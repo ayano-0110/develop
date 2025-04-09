@@ -1,7 +1,9 @@
 /node_modules
 /public/hot
+
+sudo systemctl restart nginx
 /public/storage
-/storage/*.key
+/storage/*.keybookrecord
 /vendor
 .env
 .env.backup
