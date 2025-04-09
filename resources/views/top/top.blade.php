@@ -54,13 +54,9 @@
     </div>
   </div>
   </div>
-  <hr> <!-- 横線 -->
-   <div class="text-below">Book Record とは？</div>
  </body>
  </body>
 </html>
 
 
 @endsection
-
-//なぜコメントにならないのか、なぜGETなのか
